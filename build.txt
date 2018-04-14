@@ -1,0 +1,14 @@
+name:
+	Watson APIs
+version:
+	0.*
+build:
+    CRTSQLRPGI OBJ(&INTOLIB/WATSON) SRCSTMF('&DIR/QSOURCE/watson.sqlrpgle') OBJTYPE(*MODULE) DBGVIEW(*SOURCE) REPLACE(*YES) TEXT('Watson APIs')             
+    CRTSRVPGM SRVPGM(&INTOLIB/WATSON) MODULE(&INTOLIB/WATSON) EXPORT(*ALL) TEXT('Watson APIs') REPLACE(*YES) ACTGRP(WATSON)  
+    DLTOBJ OBJ(&INTOLIB/WATSON) OBJTYPE(*MODULE)
+    
+    CRTBNDDIR BNDDIR(&INTOLIB/WATSON) TEXT('Watson APIs')
+    ADDBNDDIRE BNDDIR(&INTOLIB/WATSON) OBJ((&INTOLIB/WATSON *SRVPGM))
+    
+    CRTBNDRPG PGM(&INTOLIB/WATSONTEST) SRCSTMF('&DIR/QSOURCE/watsontest.rpgle') DBGVIEW(*ALL) REPLACE(*YES)  INCDIR('/home/brian/projects/RPG-Watson-SDK/QSOURCE')                                          
+                                                              
